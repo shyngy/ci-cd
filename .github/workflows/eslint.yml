@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install NVM
-        run: git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout git describe --abbrev=0 --tags
+        run: curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
       - name: source nvm
-        run: source ~/.nvm/nvm.sh
+        run: source ~/.profile
       - name: Install Node.js
         env:
           NODE_VERSION: 14
