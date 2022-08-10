@@ -1,5 +1,3 @@
-name: eslint
-
 on:
   push:
     branches: [main]
@@ -12,15 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install NVM
-        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-      - name: source nvm
-        run: export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-      - name: load nvm
-        run: [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+      - name: Install Node.js
         env:
-          NODE_VERSION: 14
-        run: nvm use $NODE_VERSION
+          NODE_VERSION: 14.17.0
+        run: nvm install $NODE_VERSION
       - name: Install dependencies
         run: npm install
-      - name: Lint source code with esLint
+      - name: Lint source code with ESLint
         run: npm run lint
